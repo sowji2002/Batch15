@@ -1,0 +1,33 @@
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ".:${CWD:-/code}"
+
+  postgresql:
+    build:
+      context: ./postgres
+    container_name: postgresql
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+  pgadmin:
+    build:
+      context: ./postgres/pgadmin
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+ 
+
+volumes:
+  postgresql:
+  pgadmin:

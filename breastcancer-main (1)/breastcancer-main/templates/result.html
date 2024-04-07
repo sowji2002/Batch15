@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./static/cs.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/20c5629a29.js" crossorigin="anonymous"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;500;600&display=swap">
+
+</head>
+
+<body style="background-image: url('');  background-size: cover;
+background-position: center;background-repeat: no-repeat;">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container">
+        <a class="navbar-brand food-munch-logo" href="#">
+          <p style="font-size: 34px; font-family: 'MuseoModerno', sans-serif;  margin-left:-47px;"><span><i class="fa fa-user-md" style="font-size:28px;margin-right: 7px;"></i></span>  BreastCareTech</p>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div id="navtools" class="navbar-nav ml-auto">
+               <a class="nav-link" style="font-size: 22px; " id="navitem4" href="/">Logout </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+  
+<div class="input-block" style="background-color: rgb(183, 127, 236);" > 
+        
+  <div class="container col-5 col-lg-4" style="opacity: 0.8;">    
+      
+    <form action="/upload_image" method="post" enctype="multipart/form-data" id="uploadForm">
+      <div class="img-area" style="background-image: url('{{ path }}'); background-size: cover; background-position: center; background-repeat: no-repeat;" data-img="" >
+          <!-- <i class='bx bxs-cloud-upload icon'></i>
+          <h3>Upload Image</h3>
+          <p>Image size must be less than <span>2MB</span></p> -->
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <input class="select-image" type="file" name="image_file" accept="image/*" required id="imageFileInput">
+      <button class="custom-button mb-3" style="background-color: #ce46f0;" type="submit">Upload Image</button>
+      </div>
+  </form>
+
+    
+  
+      
+</div>
+
+<div class="col-12 col-lg-12" style="text-align: center;">    
+  <h2 style="text-align: center;margin-bottom: 2vh;">Result </h2>
+  <h3>Breast Cancer Prediction</h3>  
+  <h3>Class : {{predicted_class}}</h3>
+</div>
+
+ 
+
+
+</div>    
+
+   
+
+    <script>
+       document.getElementById("imageFileInput").addEventListener("change", function(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            const imgArea = document.querySelector(".img-area");
+            imgArea.innerHTML = ''; // Clear previous content
+            
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
+            imgArea.appendChild(img);
+        };
+        
+        reader.readAsDataURL(file);
+    });
+
+
+    
+  </script>
+</body>
+
+</html>
